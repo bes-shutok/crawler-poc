@@ -1,0 +1,34 @@
+<crawler id="Norconex Minimum Test Page">
+
+  <!-- Requires at least one start URL (or urlsFile).
+       Optionally limit crawling to same protocol/domain/port as
+       start URLs. -->
+  <startURLs stayOnDomain="true" stayOnPort="true" stayOnProtocol="true">
+    <url>https://opensource.norconex.com/collectors/http/test/minimum</url>
+  </startURLs>
+
+  <!-- === Recommendations: ============================================ -->
+
+  <!-- Put a maximum depth to avoid infinite crawling (e.g. calendars). -->
+  <maxDepth>0</maxDepth>
+
+  <!-- We know we don't want to crawl the entire site, so ignore sitemap. -->
+  <sitemapResolver ignore="true" />
+
+  <!-- Be as nice as you can to sites you crawl. -->
+  <delay default="5 seconds" />
+
+  <!-- Document importing -->
+  <importer>
+    <postParseHandlers>
+      <!-- If your target repository does not support arbitrary fields,
+           make sure you only keep the fields you need. -->
+      <handler class="KeepOnlyTagger">
+        <fieldMatcher method="csv">title,keywords,description,document.reference</fieldMatcher>
+      </handler>
+    </postParseHandlers>
+  </importer>
+
+  #parse("shared/commiters-config.xml")
+
+</crawler>

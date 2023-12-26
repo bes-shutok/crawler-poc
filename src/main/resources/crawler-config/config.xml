@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<!-- 
+   Copyright 2010-2021 Norconex Inc.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<!--suppress ALL -->
+<httpcollector id="POC Collector">
+
+  <!-- Decide where to store generated files. -->
+  <workDir>./collector-output</workDir>
+
+  <crawlerDefaults>
+    <urlNormalizer class="GenericURLNormalizer" />
+    <numThreads>2</numThreads>
+    <maxDepth>0</maxDepth>
+    <orphansStrategy>DELETE</orphansStrategy>
+
+    <!-- We know we don't want to crawl the entire site, so ignore sitemap. -->
+    <sitemapResolver ignore="true" />
+
+    <referenceFilters>
+      <filter class="ExtensionReferenceFilter" onMatch="exclude">jpg,gif,png,ico,css,js</filter>
+      <filter class="impl.ReferenceFilter">
+        <valueMatcher method="regex">https://opensource\.norconex\.com/collectors/http/test/.*</valueMatcher>
+      </filter>
+    </referenceFilters>
+
+  </crawlerDefaults>
+
+  <crawlers>
+    #parse("crawler/complex1.xml")
+    #parse("crawler/complex2.xml")
+    #parse("crawler/minimum.xml")
+  </crawlers>
+
+</httpcollector>

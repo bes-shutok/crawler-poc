@@ -1,0 +1,7 @@
+<crawler id="Norconex Complex Test Page 2">
+  <startURLs>
+    <url>https://opensource.norconex.com/collectors/http/test/complex2</url>
+  </startURLs>
+  #parse("shared/importer-config.xml")
+  #parse("shared/commiters-config.xml")
+</crawler>

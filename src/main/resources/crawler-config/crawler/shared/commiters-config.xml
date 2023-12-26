@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<!--
+Commits a document to a data source of your choice.
+This step calls the Committer module.  The
+committer is a different module with its own set of XML configuration
+options.  Please refer to committer for complete documentation.
+Below is an example using the FileSystemCommitter.
+-->
+<committers>
+
+    <!--
+      JSON File Committer.
+
+      Store crawled documents to the local file system, in JSON Format.
+
+      Web site:
+        https://opensource.norconex.com/committers/core/
+
+      Configuration options and output format:
+        https://opensource.norconex.com/committers/core/v3/apidocs/com/norconex/committer/core3/fs/impl/JSONFileCommitter.html
+      -->
+    <committer class="JSONFileCommitter"/>
+
+    <committer class="com.github.besshutok.crawlerpoc.core.crawler.Commiter">
+        <indent>4</indent>
+    </committer>
+
+</committers>
