@@ -32,9 +32,9 @@
 
     <referenceFilters>
       <filter class="ExtensionReferenceFilter" onMatch="exclude">jpg,gif,png,ico,css,js</filter>
-      <filter class="impl.ReferenceFilter">
-        <valueMatcher method="regex">https://opensource\.norconex\.com/collectors/http/test/.*</valueMatcher>
-      </filter>
+<!--      <filter class="impl.ReferenceFilter">-->
+<!--        <valueMatcher method="regex">https://opensource\.norconex\.com/collectors/http/test/.*</valueMatcher>-->
+<!--      </filter>-->
     </referenceFilters>
 
   </crawlerDefaults>

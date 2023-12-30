@@ -1,6 +1,7 @@
 package com.github.besshutok.crawlerpoc.core.controller;
 
 import com.github.besshutok.crawlerpoc.core.ControllerIntegrationTestConfiguration;
+import com.github.besshutok.crawlerpoc.utils.FileUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -11,6 +12,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -33,6 +39,16 @@ class CrawlerControllerIntegrationTest {
 		this.mockMvc = MockMvcBuilders
 				.webAppContextSetup( webApplicationContext )
 				.build();
+
+		try {
+			Path targetDir = Paths.get("collector-output/test");
+			if ( Files.exists(targetDir)) {
+				FileUtils.deleteDirectory(targetDir);
+			}
+		} catch ( IOException e) {
+			throw new RuntimeException("Failed to clean 'target' directory", e);
+		}
+
 	}
 
 	@AfterEach
@@ -42,6 +58,7 @@ class CrawlerControllerIntegrationTest {
 	@Test
 	@DisplayName( "Crawler should start" )
 	void shouldStart() throws Exception {
+
 		mockMvc.perform( post( "/crawler/start")
 						.contentType( MediaType.APPLICATION_JSON )
 						.accept( MediaType.APPLICATION_JSON ) )

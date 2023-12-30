@@ -26,4 +26,17 @@ Below is an example using the FileSystemCommitter.
         <indent>4</indent>
     </committer>
 
+    <committer
+            class="com.norconex.committer.core3.fs.impl.CSVFileCommitter"
+            format="DEFAULT"
+            showHeaders="true"
+            delimiter=","
+            quote='"'
+            escape="\"
+            multiValueJoinDelimiter=","
+            truncateAt="5096">
+        <col field=""/>
+        <compress>false</compress>
+    </committer>
+
 </committers>
