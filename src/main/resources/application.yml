@@ -1,0 +1,6 @@
+logging:
+  folder: ./logs
+  #  pattern:
+  #    console:
+  level:
+    root: debug

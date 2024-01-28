@@ -2,6 +2,7 @@ package com.github.besshutok.crawlerpoc.core.controller;
 
 import com.github.besshutok.crawlerpoc.core.ControllerIntegrationTestConfiguration;
 import com.github.besshutok.crawlerpoc.utils.FileUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -30,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest
 @Import( ControllerIntegrationTestConfiguration.class )
 @Tag( "Integration" )
+@Slf4j
 class CrawlerControllerIntegrationTest {
 
 	private MockMvc mockMvc;
@@ -58,6 +60,7 @@ class CrawlerControllerIntegrationTest {
 	@Test
 	@DisplayName( "Crawler should start" )
 	void shouldStart() throws Exception {
+		log.info( "Starting test for crawling API" );
 
 		mockMvc.perform( post( "/crawler/start")
 						.contentType( MediaType.APPLICATION_JSON )

@@ -1,24 +1,73 @@
 package com.github.besshutok.crawlerpoc.core.crawler;
 
-import com.norconex.committer.core3.*;
-import com.norconex.committer.core3.fs.AbstractFSCommitter;
+import com.norconex.committer.core3.DeleteRequest;
+import com.norconex.committer.core3.UpsertRequest;
 import com.norconex.committer.core3.fs.impl.XMLFileCommitter;
 import com.norconex.commons.lang.xml.EnhancedXMLStreamWriter;
-import com.norconex.commons.lang.xml.XML;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.Writer;
 
 /**
  * Committer implementation
  */
 @Slf4j
-public class Commiter extends XMLFileCommitter {
+@Setter
+public class Committer  extends XMLFileCommitter {
+	//extends AbstractCommitter {
 
+	private String folderString;
 
+	private File folder;
+
+	public Committer(){
+		super();
+	}
 
 //	@Override
+//	protected void doInit() throws CommitterException {
+//		throw new UnsupportedOperationException();
+//	}
+//
+//	@Override
+//	protected void doUpsert( UpsertRequest upsertRequest ) throws CommitterException {
+//		throw new UnsupportedOperationException();
+//	}
+//
+//	@Override
+//	protected void doDelete( DeleteRequest deleteRequest ) throws CommitterException {
+//		throw new UnsupportedOperationException();
+//	}
+//
+//	@Override
+//	protected void doClose() throws CommitterException {
+//		throw new UnsupportedOperationException();
+//	}
+//
+//	@Override
+//	protected void doClean() throws CommitterException {
+//		throw new UnsupportedOperationException();
+//	}
+//
+//	@Override
+//	public void loadCommitterFromXML( XML xml ) {
+//		throw new UnsupportedOperationException();
+//	}
+//
+//	@Override
+//	public void saveCommitterToXML( XML xml ) {
+//		throw new UnsupportedOperationException();
+//	}
+
+//	public Committer( String folderString, File folder ) {
+//		super();
+//		this.folderString = folderString;
+//		this.folder = folder;
+//	}
+
+	//	@Override
 //	protected String getFileExtension() {
 //		log.info( "getFileExtension" );
 //		throw new UnsupportedOperationException();
@@ -29,7 +78,7 @@ public class Commiter extends XMLFileCommitter {
 //		log.info( "createDocWriter" );
 //		throw new UnsupportedOperationException();
 //	}
-//
+
 	@Override
 	protected void writeUpsert( EnhancedXMLStreamWriter xml, UpsertRequest upsertRequest ) throws IOException {
 		log.info( "writeUpsert" );
